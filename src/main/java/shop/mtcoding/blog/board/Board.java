@@ -1,7 +1,5 @@
 package shop.mtcoding.blog.board;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -32,12 +30,11 @@ public class Board {
     @CreationTimestamp // pc -> db (날짜주입)
     private Timestamp createdAt;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = )
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Reply> replies = new ArrayList<>();
 
     @Transient // 테이블 생성이 안됨
     private boolean isBoardOwner;
-
 
     @Builder
     public Board(Integer id, String title, String content, User user, Timestamp createdAt) {

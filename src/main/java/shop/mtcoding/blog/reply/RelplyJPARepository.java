@@ -1,4 +1,6 @@
 package shop.mtcoding.blog.reply;
 
-public class RelplyJPARepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RelplyJPARepository extends JpaRepository<Reply, Integer> {
 }
